@@ -1,1 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Drawing</title>
+</head>
+<body>
+    <header>
+        <h1>Time 2 Draw!</h1>
+    </header>
+    <nav>
+        <div class="nav-item">
+            <p>Color Picker:</p>
+            <input type="color" id="colorPicker">
+        </div>
+        <div class="nav-item">
+            <p>Size:</p>
+            <input type="range" id="sizePicker" min="5" max="50" value="10">
+        </div>
+        <button onclick="clearCanvas()">Reset</button>
+    </nav>
 
+    <canvas id="myCanvas"></canvas>
+</body>
+<script src="draw.js"></script>
+</html>
