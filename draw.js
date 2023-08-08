@@ -22,19 +22,31 @@ resizeCanvas();
 
 window.addEventListener('resize', resizeCanvas);
 
+let isDrawing = false;
+canvas.addEventListener('mousedown', () => {
+    isDrawing = true;
+});
 
-canvas.addEventListener('mousedown', draw);
+canvas.addEventListener('mouseup', () => {
+    isDrawing = false;
+    context.beginPath(); 
+});
+
+canvas.addEventListener('mousemove', draw);
+
 function draw (event) {
     const rect = canvas.getBoundingClientRect();
 
     const mouseX = event.clientX - rect.left; // Adjust for canvas position
     const mouseY = event.clientY - rect.top;  // Adjust for canvas position
-
-    context.beginPath();
-    context.arc(mouseX, mouseY, radius, 0, 2 * Math.PI);
-    context.fillStyle = color;
-    context.fill();
-    context.closePath();
+    if (isDrawing) {
+        context.beginPath();
+        context.arc(mouseX, mouseY, radius, 0, 2 * Math.PI);
+        context.fillStyle = color;
+        context.fill();
+        context.closePath();
+    }
+    
 }
 
 const clearCanvas = () => {
