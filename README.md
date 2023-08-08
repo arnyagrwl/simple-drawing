@@ -1,2 +1,2 @@
 # simple-drawing
-basic drawing game for the web
+just for fun - basic drawing game 
