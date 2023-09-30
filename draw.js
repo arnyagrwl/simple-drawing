@@ -32,7 +32,12 @@ canvas.addEventListener('mouseup', () => {
     context.beginPath(); 
 });
 
+let previousPos = null;
 canvas.addEventListener('mousemove', draw);
+
+function lerp(start, end, frac) {
+    return start + frac * (end - start);
+}
 
 function draw (event) {
     const rect = canvas.getBoundingClientRect();
@@ -45,8 +50,18 @@ function draw (event) {
         context.fillStyle = color;
         context.fill();
         context.closePath();
+        if (previousPos !== null) {
+            for (let i=0;i<100;i++) {
+                const frac = i/100;
+                context.beginPath();
+                context.arc(lerp(previousPos[0], mouseX, frac), lerp(previousPos[1], mouseY, frac), radius, 0, 2 * Math.PI);
+                context.fillStyle = color;
+                context.fill();
+                context.closePath();
+            }
+        }
     }
-    
+    previousPos = [mouseX, mouseY];   
 }
 
 const clearCanvas = () => {
